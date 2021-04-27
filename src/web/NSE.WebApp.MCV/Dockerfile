@@ -10,16 +10,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["src/web/NSE.WebApp.MCV/NSE.WebApp.MCV.csproj", "src/web/NSE.WebApp.MCV/"]
-RUN dotnet restore "src/web/NSE.WebApp.MCV/NSE.WebApp.MCV.csproj"
+COPY ["src/web/NSE.WebApp.MVC/NSE.WebApp.MVC.csproj", "src/web/NSE.WebApp.MVC/"]
+RUN dotnet restore "src/web/NSE.WebApp.MVC/NSE.WebApp.MVC.csproj"
 COPY . .
-WORKDIR "/src/src/web/NSE.WebApp.MCV"
-RUN dotnet build "NSE.WebApp.MCV.csproj" -c Release -o /app/build
+WORKDIR "/src/src/web/NSE.WebApp.MVC"
+RUN dotnet build "NSE.WebApp.MVC.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "NSE.WebApp.MCV.csproj" -c Release -o /app/publish
+RUN dotnet publish "NSE.WebApp.MVC.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "NSE.WebApp.MCV.dll"]
+ENTRYPOINT ["dotnet", "NSE.WebApp.MVC.dll"]

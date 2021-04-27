@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NSE.WebApp.MCV
+namespace NSE.WebApp.MVC
 {
     public class Program
     {
