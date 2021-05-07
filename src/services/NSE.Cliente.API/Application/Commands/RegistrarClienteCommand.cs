@@ -49,12 +49,12 @@ namespace NSE.Clientes.API.Application.Commands
 
             protected static bool TerCpfValido(string cpf)
             {
-                return Cpf.Validar(cpf);
+                return Core.DomainObjects.Cpf.Validar(cpf);
             }
 
             protected static bool TerEmailValido(string email)
             {
-                return Email.Validar(email);
+                return Core.DomainObjects.Email.Validar(email);
             }
         }
     }

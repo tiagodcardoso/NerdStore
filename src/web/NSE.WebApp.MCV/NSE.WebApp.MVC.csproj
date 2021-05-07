@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\build blocks\NSE.Core\NSE.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Views\Identidade\Login.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
