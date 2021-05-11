@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\..\Desktop\Curso\Comunicação\src\building blocks\NSE.MessageBus\NSE.MessageBus.csproj" />
-    <ProjectReference Include="..\..\build blocks\NSE.Core\NSE.Core.csproj" />
     <ProjectReference Include="..\..\build blocks\NSE.WebAPI.Core\NSE.WebAPI.Core.csproj" />
   </ItemGroup>
 

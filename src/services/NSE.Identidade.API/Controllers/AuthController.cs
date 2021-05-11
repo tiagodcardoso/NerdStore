@@ -1,4 +1,10 @@
-﻿using EasyNetQ;
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -8,13 +14,6 @@ using NSE.Identidade.API.Models;
 using NSE.MessageBus;
 using NSE.WebAPI.Core.Controllers;
 using NSE.WebAPI.Core.Identidade;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NSE.Identidade.API.Controllers
 {
@@ -29,7 +28,8 @@ namespace NSE.Identidade.API.Controllers
 
         public AuthController(SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<AppSettings> appSettings, IMessageBus bus)
+                              IOptions<AppSettings> appSettings,
+                              IMessageBus bus)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -61,7 +61,7 @@ namespace NSE.Identidade.API.Controllers
                     return CustomResponse(clienteResult.ValidationResult);
                 }
 
-                return CustomResponse(await GerarJwt(usuarioRegistro.Email));                
+                return CustomResponse(await GerarJwt(usuarioRegistro.Email));
             }
 
             foreach (var error in result.Errors)
@@ -69,7 +69,7 @@ namespace NSE.Identidade.API.Controllers
                 AdicionarErroProcessamento(error.Description);
             }
 
-            return BadRequest();
+            return CustomResponse();
         }
 
         [HttpPost("autenticar")]
@@ -87,11 +87,11 @@ namespace NSE.Identidade.API.Controllers
 
             if (result.IsLockedOut)
             {
-                AdicionarErroProcessamento("Usuario temporariamente bloqueado por tentativas invalidas");
+                AdicionarErroProcessamento("Usuário temporariamente bloqueado por tentativas inválidas");
                 return CustomResponse();
             }
-            
-            AdicionarErroProcessamento("Usuário ou seha incorretors");            
+
+            AdicionarErroProcessamento("Usuário ou Senha incorretos");
             return CustomResponse();
         }
 

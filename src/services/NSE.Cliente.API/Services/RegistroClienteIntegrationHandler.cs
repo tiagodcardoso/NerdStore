@@ -17,7 +17,7 @@ namespace NSE.Clientes.API.Services
         private readonly IServiceProvider _serviceProvider;
 
         public RegistroClienteIntegrationHandler(
-                            IServiceProvider serviceProvider, 
+                            IServiceProvider serviceProvider,
                             IMessageBus bus)
         {
             _serviceProvider = serviceProvider;
