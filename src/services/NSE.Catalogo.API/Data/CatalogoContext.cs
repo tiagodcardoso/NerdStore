@@ -1,12 +1,10 @@
-﻿using FluentValidation.Results;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using NSE.Catalogo.API.Models;
 using NSE.Core.Data;
-using NSE.Core.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.Results;
+using NSE.Core.Messages;
 
 namespace NSE.Catalogo.API.Data
 {
